@@ -1,4 +1,7 @@
-﻿namespace DemoConsoleGame
+﻿using System;
+using ConsoleGameEngine.Draw;
+
+namespace DemoConsoleGame
 {
   internal static class Program
   {

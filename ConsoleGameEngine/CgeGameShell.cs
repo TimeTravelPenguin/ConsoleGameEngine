@@ -1,14 +1,17 @@
-﻿namespace ConsoleGameEngine
+﻿using System;
+
+namespace ConsoleGameEngine
 {
   public abstract class CgeGameShell
   {
-    protected readonly BackgroundTimer BgTimer;
+    protected readonly BackgroundTimer BackgroundTimer;
 
     protected double GameLoops;
 
     protected CgeGameShell()
     {
-      BgTimer = new BackgroundTimer();
+      Console.CursorVisible = false;
+      BackgroundTimer = new BackgroundTimer();
     }
 
     public void Start()
@@ -24,7 +27,7 @@
 
       OnFinish();
 
-      BgTimer.Stop();
+      BackgroundTimer.Stop();
     }
 
     protected abstract void OnStart();

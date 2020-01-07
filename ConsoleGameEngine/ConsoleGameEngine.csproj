@@ -44,13 +44,19 @@
   <ItemGroup>
     <Compile Include="BackgroundTimer.cs" />
     <Compile Include="CgeGameShell.cs" />
+    <Compile Include="Helpers\ConsoleHelper.cs" />
+    <Compile Include="Draw\Characters.cs" />
+    <Compile Include="Draw\Glyph.cs" />
+    <Compile Include="Draw\Point.cs" />
+    <Compile Include="Draw\Sprite.cs" />
+    <Compile Include="Draw\SpriteDraw.cs" />
+    <Compile Include="Extensions\GlyphExtensions.cs" />
+    <Compile Include="Helpers\RandomHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="todo.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ConsoleHelper\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
