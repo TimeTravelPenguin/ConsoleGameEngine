@@ -52,7 +52,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConsoleGameEngine\ConsoleGameEngine.csproj">
+    <ProjectReference Include="..\..\ConsoleGameEngine\ConsoleGameEngine.csproj">
       <Project>{ef49e748-6ad9-4c23-8f25-858f3f634a13}</Project>
       <Name>ConsoleGameEngine</Name>
     </ProjectReference>
