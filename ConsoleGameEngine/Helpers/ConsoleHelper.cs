@@ -1,5 +1,5 @@
 ﻿using System;
-using ConsoleGameEngine.Draw;
+using ConsoleGameEngine.Sprites;
 
 namespace ConsoleGameEngine.Helpers
 {

@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace ConsoleGameEngine
 {
-  public sealed class BackgroundTimer : IDisposable
+  public sealed class BackgroundAction : IDisposable
   {
-    private readonly Stopwatch _stopwatch = new Stopwatch();
     private Task _backgroundTask;
     private int _counter;
     private CancellationTokenSource _cts;
 
-    public long Elapsed => _stopwatch.ElapsedMilliseconds;
     public int Counter => _counter;
 
     public void Dispose()
@@ -29,6 +26,11 @@ namespace ConsoleGameEngine
     public void UpdateCounter()
     {
       Interlocked.Increment(ref _counter);
+    }
+
+    public void UpdateCounter(int increment)
+    {
+      Interlocked.Add(ref _counter, increment);
     }
 
     public void ResetCounter()
@@ -53,7 +55,6 @@ namespace ConsoleGameEngine
         throw new InvalidOperationException("Progress tracking is already started");
       }
 
-      _stopwatch.Start();
       _cts = new CancellationTokenSource();
       _backgroundTask = CreateBackgroundTask(actionExecutionInterval, action);
     }
@@ -64,8 +65,6 @@ namespace ConsoleGameEngine
       {
         throw new InvalidOperationException("Progress tracking is not started");
       }
-
-      _stopwatch.Stop();
 
       CancelTracking();
 
@@ -96,7 +95,7 @@ namespace ConsoleGameEngine
           if (!_cts.IsCancellationRequested)
           {
             action.Invoke();
-            _stopwatch.Restart();
+            UpdateCounter(_counter);
           }
         }
       }, _cts.Token, TaskCreationOptions.LongRunning, TaskScheduler.Default).Unwrap();

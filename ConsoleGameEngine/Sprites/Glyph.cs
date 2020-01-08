@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConsoleGameEngine.Draw
+namespace ConsoleGameEngine.Sprites
 {
   public class Glyph
   {

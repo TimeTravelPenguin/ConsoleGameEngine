@@ -1,21 +1,21 @@
 ﻿using System;
 using ConsoleGameEngine.Extensions;
 
-namespace ConsoleGameEngine.Draw
+namespace ConsoleGameEngine.Sprites
 {
-  public class Sprite
+  public class Sprite : ISprite
   {
     public int Height { get; set; }
     public int Width { get; set; }
     public Glyph[,] Glyphs { get; set; }
     public ConsoleColor Color { get; set; }
-    public Point Origin { get; set; }
+    public Point Pos { get; set; }
 
-    public Sprite(int height, int width, Point origin, Glyph[,] glyphs = null, ConsoleColor color = ConsoleColor.White)
+    public Sprite(int height, int width, Point pos, Glyph[,] glyphs = null, ConsoleColor color = ConsoleColor.White)
     {
       Height = height;
       Width = width;
-      Origin = origin;
+      Pos = pos;
       Glyphs = glyphs ?? new Glyph[0, 0];
       Color = color;
     }

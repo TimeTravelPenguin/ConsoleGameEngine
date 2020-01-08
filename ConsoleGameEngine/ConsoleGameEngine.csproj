@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ConsoleGameEngine</RootNamespace>
     <AssemblyName>ConsoleGameEngine</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -42,17 +44,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BackgroundTimer.cs" />
+    <Compile Include="BackgroundAction.cs" />
     <Compile Include="CgeGameShell.cs" />
+    <Compile Include="Enums\Direction.cs" />
+    <Compile Include="Extensions\ArrayExtensions.cs" />
+    <Compile Include="Extensions\IntegerExtensions.cs" />
+    <Compile Include="Extensions\TileExtensions.cs" />
+    <Compile Include="GameConfiguration.cs" />
+    <Compile Include="Sprites\ISprite.cs" />
+    <Compile Include="Extensions\ActionExtensions.cs" />
+    <Compile Include="Extensions\DictionaryExtension.cs" />
+    <Compile Include="Extensions\GenericExtensions.cs" />
     <Compile Include="Helpers\ConsoleHelper.cs" />
-    <Compile Include="Draw\Characters.cs" />
-    <Compile Include="Draw\Glyph.cs" />
-    <Compile Include="Draw\Point.cs" />
-    <Compile Include="Draw\Sprite.cs" />
-    <Compile Include="Draw\SpriteDraw.cs" />
+    <Compile Include="Sprites\Characters.cs" />
+    <Compile Include="Sprites\Glyph.cs" />
+    <Compile Include="Sprites\Point.cs" />
+    <Compile Include="Sprites\Sprite.cs" />
+    <Compile Include="Sprites\SpriteDraw.cs" />
     <Compile Include="Extensions\GlyphExtensions.cs" />
     <Compile Include="Helpers\RandomHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Container\SpriteContainer.cs" />
+    <Compile Include="Tiles\Tile.cs" />
+    <Compile Include="Tiles\TileMesh.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="todo.txt" />

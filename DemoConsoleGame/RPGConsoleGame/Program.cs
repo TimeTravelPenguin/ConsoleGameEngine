@@ -1,5 +1,5 @@
 ﻿using System;
-using ConsoleGameEngine.Draw;
+using ConsoleGameEngine.Tiles;
 
 namespace DemoConsoleGame
 {
@@ -11,6 +11,8 @@ namespace DemoConsoleGame
     {
       _gameShell = new GameShell();
       _gameShell.Start();
+
+      Console.ReadKey(true);
     }
   }
 }

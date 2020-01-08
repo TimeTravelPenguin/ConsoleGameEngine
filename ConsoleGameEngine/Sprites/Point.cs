@@ -1,4 +1,4 @@
-﻿namespace ConsoleGameEngine.Draw
+﻿namespace ConsoleGameEngine.Sprites
 {
   public class Point
   {

@@ -1,4 +1,4 @@
-﻿namespace ConsoleGameEngine.Draw
+﻿namespace ConsoleGameEngine.Sprites
 {
   public static class SpriteDraw
   {
