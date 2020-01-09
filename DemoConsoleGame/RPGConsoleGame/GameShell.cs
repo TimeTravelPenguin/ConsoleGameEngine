@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using ConsoleGameEngine;
 using ConsoleGameEngine.Enums;
-using ConsoleGameEngine.Extensions;
-using ConsoleGameEngine.Tiles;
 
 namespace DemoConsoleGame
 {
   internal class GameShell : CgeGameShell
   {
     private readonly Stopwatch _fpsStopwatch;
-    private readonly Tile[,] _tiles = TileMesh.NewTileMesh(12, 12);
-    private Tile _currentTile;
     private Direction _direction = Direction.None;
+    private Maze _maze;
 
     public GameShell(ConsoleColor bgColor = ConsoleColor.Black, bool clearScreen = true)
       : base(bgColor, clearScreen)
@@ -55,38 +53,24 @@ namespace DemoConsoleGame
 
     protected override void OnStart()
     {
-      _currentTile = _tiles[0, 0];
-      _currentTile.Color = ConsoleColor.Blue;
-
-      for (var y = 0; y < _tiles.GetLength(0); y++)
-      {
-        for (var x = 0; x < _tiles.GetLength(1); x++)
-        {
-          var tile = _tiles[y, x];
-          tile.DrawTile();
-        }
-      }
+      _maze = Maze.CreateMaze(60, 30);
     }
 
     protected override bool OnUpdate()
     {
-      if (_direction != Direction.None)
-      {
-        _currentTile.Color = ConsoleColor.White;
-        _currentTile.DrawTile();
+      var loop = !_maze.DrawMaze();
+      //Task.Delay(1).Wait();
 
-        _currentTile = _currentTile.GetNeighborTile(_direction);
-        _currentTile.Color = ConsoleColor.Blue;
-        _currentTile.DrawTile();
 
-        _direction = Direction.None;
-      }
-
-      return true;
+      return loop;
     }
 
     protected override void OnFinish()
     {
+      _maze.HighlightPath();
+
+      Console.ReadKey(true);
+
       Dispose();
 
       Console.Title = "Application finished";

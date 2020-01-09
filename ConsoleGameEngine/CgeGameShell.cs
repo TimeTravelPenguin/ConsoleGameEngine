@@ -47,15 +47,8 @@ namespace ConsoleGameEngine
 
       do
       {
-        if (!_stopGame)
-        {
-          _continueGame = OnUpdate();
-          GameLoops++;
-        }
-        else
-        {
-          _continueGame = false;
-        }
+        _continueGame = !_stopGame && OnUpdate();
+        GameLoops++;
       } while (_continueGame);
 
       OnFinish();

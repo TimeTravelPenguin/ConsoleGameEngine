@@ -48,6 +48,7 @@
     <Compile Include="CgeGameShell.cs" />
     <Compile Include="Enums\Direction.cs" />
     <Compile Include="Extensions\ArrayExtensions.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\IntegerExtensions.cs" />
     <Compile Include="Extensions\TileExtensions.cs" />
     <Compile Include="GameConfiguration.cs" />

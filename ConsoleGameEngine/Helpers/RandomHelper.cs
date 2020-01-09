@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ConsoleGameEngine.Extensions;
 
 namespace ConsoleGameEngine.Helpers
@@ -35,13 +36,35 @@ namespace ConsoleGameEngine.Helpers
       }
     }
 
-    public static T RandomIn<T>(this IList<T> collection)
+    public static T RandomIn<T>(this IEnumerable<T> collection)
     {
-      return collection[RandRange(0, collection.Count)];
+      if (collection is null)
+      {
+        throw new ArgumentNullException(nameof(collection));
+      }
+
+      var enumerable = collection.ToList();
+
+      if (!enumerable.Any())
+      {
+        throw new ArgumentException("Collection cannot be empty", nameof(collection));
+      }
+
+      return enumerable[RandRange(0, enumerable.Count)];
     }
 
     public static T RandomIn<T>(this T[] collection)
     {
+      if (collection is null)
+      {
+        throw new ArgumentNullException(nameof(collection));
+      }
+
+      if (!collection.Any())
+      {
+        throw new ArgumentException("Collection cannot be empty", nameof(collection));
+      }
+
       return collection[RandRange(0, collection.Length)];
     }
   }

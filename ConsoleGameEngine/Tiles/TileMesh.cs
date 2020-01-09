@@ -5,21 +5,28 @@ namespace ConsoleGameEngine.Tiles
 {
   public static class TileMesh
   {
-    public static Tile[,] NewTileMesh(int width, int height)
+    public static T[,] NewTileMesh<T>(int width, int height) where T : Tile<T>, new()
     {
-      var tiles2d = new Tile[height, width];
+      var tiles2d = new T[height, width];
 
       // Create objects
       for (var i = 0; i < height * width; i++)
       {
-        tiles2d[i / width, i % width] = new Tile
+        tiles2d[i / width, i % width] = new T
         {
-          Value = Characters.Square.ToString(),
+          Value = Characters.Square,
           Color = ConsoleColor.White,
-          Pos = new Point(2* (i % width), i / width)
+          Pos = new Point(2 * (i % width), i / width)
         };
       }
 
+      WireMesh(tiles2d, width, height);
+      
+      return tiles2d;
+    }
+
+    private static void WireMesh<T>(T[,] tiles2d, int width, int height) where T : Tile<T>, new()
+    {
       // Assign neighbors
       for (var i = 0; i < height * width; i++)
       {
@@ -31,7 +38,7 @@ namespace ConsoleGameEngine.Tiles
         }
 
         // Assign Down
-        if (i < height * (width - 1))
+        if (i < width * (height - 1))
         {
           tile.TileDown = tiles2d[i / width + 1, i % width];
         }
@@ -48,8 +55,20 @@ namespace ConsoleGameEngine.Tiles
           tile.TileRight = tiles2d[i / width, i % width + 1];
         }
       }
+    }
 
-      return tiles2d;
+    public static T GetTile<T>(this T[,] tiles, int value) where T : Tile<T>
+    {
+      if (value >= tiles.Length)
+      {
+        throw new ArgumentOutOfRangeException(nameof(value), value, null);
+      }
+
+      var width = tiles.GetLength(1);
+
+      var tile = tiles[value / width, value % width];
+
+      return tile;
     }
   }
 }
