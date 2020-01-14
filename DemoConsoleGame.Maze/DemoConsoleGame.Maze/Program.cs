@@ -9,8 +9,8 @@ namespace DemoConsoleGame
     private static void Main()
     {
       Console.Title = "Maze Generating Algorithm";
-      //Console.WriteLine("Press to start...");
-      //Console.ReadKey(true);
+      Console.WriteLine("Press to start...");
+      Console.ReadKey(true);
 
       _gameShell = new GameShell();
       _gameShell.Start();

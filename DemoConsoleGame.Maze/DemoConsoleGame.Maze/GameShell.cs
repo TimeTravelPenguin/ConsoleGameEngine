@@ -59,7 +59,7 @@ namespace DemoConsoleGame
     protected override bool OnUpdate()
     {
       var loop = !_maze.DrawMaze();
-      //Task.Delay(1).Wait();
+      Task.Delay(1).Wait();
 
 
       return loop;

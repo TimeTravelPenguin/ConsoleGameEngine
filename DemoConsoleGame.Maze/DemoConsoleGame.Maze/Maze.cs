@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using ConsoleGameEngine.Enums;
 using ConsoleGameEngine.Extensions;
 using ConsoleGameEngine.Helpers;
@@ -10,7 +11,9 @@ namespace DemoConsoleGame
 {
   internal class Maze
   {
+    private readonly MyTile _endTile;
     private readonly Stack<MyTile> _path;
+    private readonly Stack<MyTile> _pathToEnd;
     private readonly MyTile[,] _tiles;
     private readonly Direction[] _validDirections = {Direction.Up, Direction.Down, Direction.Left, Direction.Right};
     private MyTile _currentTile;
@@ -20,7 +23,9 @@ namespace DemoConsoleGame
     private Maze(int width, int height)
     {
       _tiles = TileMesh.NewTileMesh<MyTile>(width, height);
+      _endTile = _tiles.GetTile(_tiles.Length - 1);
       _path = new Stack<MyTile>();
+      _pathToEnd = new Stack<MyTile>();
 
       InitialiseStart();
     }
@@ -36,6 +41,7 @@ namespace DemoConsoleGame
       _currentTile.Traversed = true;
 
       _path.Push(_currentTile);
+      _pathToEnd.Push(_currentTile);
 
       DrawMaze();
     }
@@ -47,6 +53,11 @@ namespace DemoConsoleGame
       if (IsDeadEnd(_currentTile))
       {
         _currentTile = _path.Pop();
+
+        if (!_pathToEnd.Contains(_endTile))
+        {
+          _pathToEnd.Pop();
+        }
       }
       else
       {
@@ -55,6 +66,11 @@ namespace DemoConsoleGame
         _currentTile.AddTile(randomTile, _lastMovement);
         _currentTile = TraverseTile(randomTile);
         _path.Push(_currentTile);
+
+        if (!_pathToEnd.Contains(_endTile))
+        {
+          _pathToEnd.Push(_currentTile);
+        }
       }
 
       _lastTile.Color = ConsoleColor.White;
@@ -112,16 +128,20 @@ namespace DemoConsoleGame
         }
       }
 
-      // Create solution path
-      var start = _tiles[0, 0];
-      var end = _tiles.GetTile(_tiles.Length - 1);
-
-      var path = start.MapTraversal(end);
-
-      foreach (var tile in path)
+      var colors = new[]
       {
-        tile.Color = ConsoleColor.Red;
+        ConsoleColor.Red, ConsoleColor.Blue, ConsoleColor.Magenta, ConsoleColor.Green, ConsoleColor.DarkRed,
+        ConsoleColor.DarkBlue, ConsoleColor.DarkMagenta, ConsoleColor.DarkGreen
+      };
+
+      var segmentSize = (int) Math.Ceiling((double) _pathToEnd.Count / colors.Length);
+
+      var i = 0;
+      foreach (var tile in _pathToEnd.Reverse())
+      {
+        tile.Color = colors[(int) Math.Floor((double) i++ / segmentSize)];
         tile.DrawTile();
+        Task.Delay(1).Wait();
       }
     }
   }

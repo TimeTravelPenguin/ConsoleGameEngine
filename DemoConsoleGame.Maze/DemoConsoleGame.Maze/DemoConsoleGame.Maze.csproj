@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{BEB26D6E-A73B-4632-8565-A52793218A21}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>DemoConsoleGame</RootNamespace>
-    <AssemblyName>DemoConsoleGame</AssemblyName>
+    <RootNamespace>DemoConsoleGame.Maze</RootNamespace>
+    <AssemblyName>DemoConsoleGame.Maze</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
