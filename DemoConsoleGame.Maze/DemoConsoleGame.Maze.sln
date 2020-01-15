@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleGameEngine", "..\Con
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoConsoleGame.Maze", "DemoConsoleGame.Maze\DemoConsoleGame.Maze.csproj", "{BEB26D6E-A73B-4632-8565-A52793218A21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreGameEngine", "..\CoreGameEngine\CoreGameEngine.csproj", "{1BB2DF2E-F280-4BD5-81E5-98EE45C49C3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BEB26D6E-A73B-4632-8565-A52793218A21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEB26D6E-A73B-4632-8565-A52793218A21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEB26D6E-A73B-4632-8565-A52793218A21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BB2DF2E-F280-4BD5-81E5-98EE45C49C3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BB2DF2E-F280-4BD5-81E5-98EE45C49C3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BB2DF2E-F280-4BD5-81E5-98EE45C49C3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BB2DF2E-F280-4BD5-81E5-98EE45C49C3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
