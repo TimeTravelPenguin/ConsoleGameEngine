@@ -132,4 +132,7 @@
   <data name="BackgroundAction_NotRunning" xml:space="preserve">
     <value>The background task is not currently running</value>
   </data>
+  <data name="Parameter_IncorrectType" xml:space="preserve">
+    <value>The given parameter is of the incorrect type</value>
+  </data>
 </root>

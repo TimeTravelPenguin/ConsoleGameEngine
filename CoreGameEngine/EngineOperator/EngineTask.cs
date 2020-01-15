@@ -1,4 +1,5 @@
 ﻿using System;
+using CoreGameEngine.Resources;
 
 namespace CoreGameEngine.EngineOperator
 {
@@ -7,6 +8,23 @@ namespace CoreGameEngine.EngineOperator
     private readonly Action _action;
     private readonly Action<T> _paramAction;
     private readonly bool _requiresParam;
+
+    public void Execute(object param = null)
+    {
+      if (_requiresParam)
+      {
+        if (!(param is T obj))
+        {
+          throw new ArgumentException(Exceptions.Parameter_IncorrectType, nameof(param));
+        }
+
+        _paramAction.Invoke(obj);
+      }
+      else
+      {
+        _action.Invoke();
+      }
+    }
 
     public EngineTask(Action action)
     {
@@ -18,23 +36,6 @@ namespace CoreGameEngine.EngineOperator
     {
       _paramAction = action;
       _requiresParam = true;
-    }
-
-    public void Execute(object param = null)
-    {
-      if (_requiresParam)
-      {
-        if (!(param is T obj))
-        {
-          throw new ArrayTypeMismatchException($"Parameter is not of type {typeof(T)}");
-        }
-
-        _paramAction.Invoke(obj);
-      }
-      else
-      {
-        _action.Invoke();
-      }
     }
   }
 }

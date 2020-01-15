@@ -104,5 +104,14 @@ namespace CoreGameEngine.Resources {
                 return ResourceManager.GetString("Factory_KeyAlreadyExists", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The given parameter is of the incorrect type.
+        /// </summary>
+        internal static string Parameter_IncorrectType {
+            get {
+                return ResourceManager.GetString("Parameter_IncorrectType", resourceCulture);
+            }
+        }
     }
 }
