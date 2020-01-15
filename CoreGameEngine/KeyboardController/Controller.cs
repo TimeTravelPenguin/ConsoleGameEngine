@@ -3,7 +3,7 @@ using CoreGameEngine.Factory;
 
 namespace CoreGameEngine.KeyboardController
 {
-  public abstract class Controller : IDisposable
+  public abstract class Controller : IController
   {
     private readonly BackgroundAction _backgroundControl = new BackgroundAction();
     private readonly IFactory<ConsoleKey, Action> _controllerFactory;
@@ -12,19 +12,6 @@ namespace CoreGameEngine.KeyboardController
     {
       Dispose(true);
       GC.SuppressFinalize(this);
-    }
-
-    protected Controller(IFactory<ConsoleKey, Action> controllerFactory)
-    {
-      _controllerFactory = controllerFactory;
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-      if (disposing)
-      {
-        _backgroundControl?.Dispose();
-      }
     }
 
     public void AddControl(ConsoleKey consoleKey, Func<Action> action)
@@ -43,6 +30,24 @@ namespace CoreGameEngine.KeyboardController
           _controllerFactory.Create(key);
         }
       });
+    }
+
+    protected Controller(IFactory<ConsoleKey, Action> controllerFactory)
+    {
+      _controllerFactory = controllerFactory;
+    }
+
+    public void StopController()
+    {
+      _backgroundControl.Stop();
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+      if (disposing)
+      {
+        _backgroundControl?.Dispose();
+      }
     }
   }
 }

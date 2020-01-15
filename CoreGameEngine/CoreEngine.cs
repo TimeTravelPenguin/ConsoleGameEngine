@@ -1,14 +1,16 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using CoreGameEngine.EngineOperator;
+using CoreGameEngine.KeyboardController;
 
 namespace CoreGameEngine
 {
   public class CoreEngine : IDisposable
   {
+    private readonly IController _controller;
     private Action _onFinish;
     private Action _onStart;
     private Func<bool> _onUpdate;
-    private readonly BackgroundAction _trackKeyboard;
 
     public void Dispose()
     {
@@ -18,14 +20,18 @@ namespace CoreGameEngine
 
     public CoreEngine()
     {
-      _trackKeyboard = new BackgroundAction();
+    }
+
+    public CoreEngine([NotNull] IController controller)
+    {
+      _controller = controller;
     }
 
     protected virtual void Dispose(bool disposing)
     {
       if (disposing)
       {
-        _trackKeyboard?.Dispose();
+        _controller?.Dispose();
       }
     }
 
@@ -66,11 +72,15 @@ namespace CoreGameEngine
 
     public void Start()
     {
+      _controller?.RunController();
+
       _onStart.Invoke();
 
       _onUpdate.Invoke();
 
       _onFinish.Invoke();
+
+      _controller?.StopController();
     }
   }
 }
