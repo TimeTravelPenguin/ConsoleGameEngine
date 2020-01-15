@@ -8,12 +8,17 @@ namespace CoreGameEngine
     private Action _onFinish;
     private Action _onStart;
     private Func<bool> _onUpdate;
-    private BackgroundAction _trackKeyboard;
+    private readonly BackgroundAction _trackKeyboard;
 
     public void Dispose()
     {
       Dispose(true);
       GC.SuppressFinalize(this);
+    }
+
+    public CoreEngine()
+    {
+      _trackKeyboard = new BackgroundAction();
     }
 
     protected virtual void Dispose(bool disposing)
@@ -61,15 +66,11 @@ namespace CoreGameEngine
 
     public void Start()
     {
-      _trackKeyboard = new BackgroundAction();
-
       _onStart.Invoke();
 
       _onUpdate.Invoke();
 
       _onFinish.Invoke();
-
-      _trackKeyboard.Dispose();
     }
   }
 }
