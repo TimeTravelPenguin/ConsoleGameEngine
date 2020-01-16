@@ -76,7 +76,11 @@ namespace CoreGameEngine
 
       _onStart.Invoke();
 
-      _onUpdate.Invoke();
+      bool loop;
+      do
+      {
+        loop = _onUpdate.Invoke();
+      } while (loop);
 
       _onFinish.Invoke();
 

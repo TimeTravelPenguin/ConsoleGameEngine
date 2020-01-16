@@ -135,4 +135,13 @@
   <data name="Parameter_IncorrectType" xml:space="preserve">
     <value>The given parameter is of the incorrect type</value>
   </data>
+  <data name="Shape_InvalidShapeRegex" xml:space="preserve">
+    <value>The provided shape expression is not a valid pattern</value>
+  </data>
+  <data name="ArgumentIsNull" xml:space="preserve">
+    <value>The given argument is null</value>
+  </data>
+  <data name="Argument_StringEmpty" xml:space="preserve">
+    <value>Argument {0} cannot be empty</value>
+  </data>
 </root>

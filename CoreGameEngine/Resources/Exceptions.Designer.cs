@@ -61,6 +61,24 @@ namespace CoreGameEngine.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Argument {0} cannot be empty.
+        /// </summary>
+        internal static string Argument_StringEmpty {
+            get {
+                return ResourceManager.GetString("Argument_StringEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The given argument is null.
+        /// </summary>
+        internal static string ArgumentIsNull {
+            get {
+                return ResourceManager.GetString("ArgumentIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The background task is already running.
         /// </summary>
         internal static string BackgroundAction_AlreadyRunning {
@@ -111,6 +129,15 @@ namespace CoreGameEngine.Resources {
         internal static string Parameter_IncorrectType {
             get {
                 return ResourceManager.GetString("Parameter_IncorrectType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The provided shape expression is not a valid pattern.
+        /// </summary>
+        internal static string Shape_InvalidShapeRegex {
+            get {
+                return ResourceManager.GetString("Shape_InvalidShapeRegex", resourceCulture);
             }
         }
     }
