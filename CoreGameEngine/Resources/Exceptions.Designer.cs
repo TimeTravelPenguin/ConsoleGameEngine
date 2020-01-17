@@ -61,20 +61,38 @@ namespace CoreGameEngine.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Argument {0} cannot be empty.
+        ///   Looks up a localized string similar to The given argument is null.
         /// </summary>
-        internal static string Argument_StringEmpty {
+        internal static string Argument_IsNull {
             get {
-                return ResourceManager.GetString("Argument_StringEmpty", resourceCulture);
+                return ResourceManager.GetString("Argument_IsNull", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The given argument is null.
+        ///   Looks up a localized string similar to Argument {0} cannot be empty.
         /// </summary>
-        internal static string ArgumentIsNull {
+        internal static string Argument_StringEmpty_ExceptionTakesParam {
             get {
-                return ResourceManager.GetString("ArgumentIsNull", resourceCulture);
+                return ResourceManager.GetString("Argument_StringEmpty_ExceptionTakesParam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The given jagged array is not rectangular.
+        /// </summary>
+        internal static string Array_JaggadNotRectangular {
+            get {
+                return ResourceManager.GetString("Array_JaggadNotRectangular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Matrix must be square.
+        /// </summary>
+        internal static string Array_MatrixNotSquare {
+            get {
+                return ResourceManager.GetString("Array_MatrixNotSquare", resourceCulture);
             }
         }
         

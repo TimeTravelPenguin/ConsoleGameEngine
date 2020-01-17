@@ -12,7 +12,7 @@ namespace CoreGameEngine.Extensions
     {
       if (values is null)
       {
-        throw new ArgumentNullException(nameof(values), Exceptions.ArgumentIsNull);
+        throw new ArgumentNullException(nameof(values), Exceptions.Argument_IsNull);
       }
 
       return values.Any(value => input.StartsWith(value, StringComparison.InvariantCulture));
@@ -24,7 +24,8 @@ namespace CoreGameEngine.Extensions
       {
         null => throw new ArgumentNullException(nameof(input)),
         "" => throw new ArgumentException(
-          string.Format(CultureInfo.InvariantCulture, Exceptions.Argument_StringEmpty, nameof(input)), nameof(input)),
+          string.Format(CultureInfo.InvariantCulture, Exceptions.Argument_StringEmpty_ExceptionTakesParam,
+            nameof(input)), nameof(input)),
         _ => input.First().ToString(CultureInfo.InvariantCulture).ToUpperInvariant() + input.Substring(1)
       };
     }
