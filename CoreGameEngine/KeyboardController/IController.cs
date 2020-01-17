@@ -1,4 +1,5 @@
 ﻿#region Title Header
+
 // Name: Phillip Smith
 // 
 // Solution: DemoConsoleGame.Maze
@@ -10,6 +11,7 @@
 // 
 // Creation Date:
 // -- 
+
 #endregion
 
 using System;

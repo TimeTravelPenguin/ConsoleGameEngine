@@ -1,4 +1,5 @@
 ﻿#region Title Header
+
 // Name: Phillip Smith
 // 
 // Solution: DemoConsoleGame.Maze
@@ -10,7 +11,9 @@
 // 
 // Creation Date:
 // -- 
+
 #endregion
+
 namespace CoreGameEngine.EngineOperator
 {
   public interface IEngineTask<T>

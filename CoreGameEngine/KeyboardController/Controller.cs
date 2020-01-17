@@ -32,14 +32,14 @@ namespace CoreGameEngine.KeyboardController
       });
     }
 
-    protected Controller(IFactory<ConsoleKey, Action> controllerFactory)
-    {
-      _controllerFactory = controllerFactory;
-    }
-
     public void StopController()
     {
       _backgroundControl.Stop();
+    }
+
+    protected Controller(IFactory<ConsoleKey, Action> controllerFactory)
+    {
+      _controllerFactory = controllerFactory;
     }
 
     protected virtual void Dispose(bool disposing)
