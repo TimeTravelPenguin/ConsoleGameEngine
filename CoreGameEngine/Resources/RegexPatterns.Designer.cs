@@ -61,7 +61,7 @@ namespace CoreGameEngine.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to (n\s*\d+\s+\d+\s*)|(c\s*\w+\s+)|([udlr]\s*\d+\s*).
+        ///   Looks up a localized string similar to (n\s*\d+\s+\d+\s*)|(c\s*\w+\s+)|([UDLR]\s*\d+\s*).
         /// </summary>
         internal static string ValidShape {
             get {

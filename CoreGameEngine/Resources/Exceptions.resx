@@ -150,4 +150,16 @@
   <data name="Array_JaggadNotRectangular" xml:space="preserve">
     <value>The given jagged array is not rectangular</value>
   </data>
+  <data name="Dictionary_CannotContainNullValues" xml:space="preserve">
+    <value>Dictionary cannot contain null values</value>
+  </data>
+  <data name="Dictionary_InvalidKey" xml:space="preserve">
+    <value>The dictionary does not contain the given key</value>
+  </data>
+  <data name="Dictionary_KeyAlreadyExists" xml:space="preserve">
+    <value>The dictionary already contains the given key</value>
+  </data>
+  <data name="Collection_CannotBeEmpty" xml:space="preserve">
+    <value>Collection cannot be empty</value>
+  </data>
 </root>

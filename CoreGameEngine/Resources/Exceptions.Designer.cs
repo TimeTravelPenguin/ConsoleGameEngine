@@ -124,6 +124,42 @@ namespace CoreGameEngine.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Collection cannot be empty.
+        /// </summary>
+        internal static string Collection_CannotBeEmpty {
+            get {
+                return ResourceManager.GetString("Collection_CannotBeEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dictionary cannot contain null values.
+        /// </summary>
+        internal static string Dictionary_CannotContainNullValues {
+            get {
+                return ResourceManager.GetString("Dictionary_CannotContainNullValues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The dictionary does not contain the given key.
+        /// </summary>
+        internal static string Dictionary_InvalidKey {
+            get {
+                return ResourceManager.GetString("Dictionary_InvalidKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The dictionary already contains the given key.
+        /// </summary>
+        internal static string Dictionary_KeyAlreadyExists {
+            get {
+                return ResourceManager.GetString("Dictionary_KeyAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The registry does not contain the given key.
         /// </summary>
         internal static string Factory_InvalidKey {
