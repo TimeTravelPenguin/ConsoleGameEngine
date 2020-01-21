@@ -13,12 +13,12 @@ namespace CoreGameEngine.Draw.Builder
     private ConsoleColor _color;
     private Point _pos;
 
-    public IList<Glyph> Glyphs { get; set; } = new List<Glyph>();
+    public IDictionary<Point, Glyph> Glyphs { get; set; } = new Dictionary<Point, Glyph>();
 
-    public void ConstructGlyph(IEnumerable<string> pattern, char tile, Point pos)
+    public void ConstructGlyph(IEnumerable<string> pattern, char tile)
     {
       _color = ConsoleColor.White;
-      _pos = pos;
+      _pos = Point.Empty;
 
       foreach (var p in pattern)
       {
@@ -37,7 +37,7 @@ namespace CoreGameEngine.Draw.Builder
       }
     }
 
-    public IList<Glyph> GetGlyph()
+    public IDictionary<Point, Glyph> GetGlyph()
     {
       return Glyphs;
     }
@@ -61,7 +61,6 @@ namespace CoreGameEngine.Draw.Builder
     private void AddGlyphs(string pattern, char tile)
     {
       var p = Regex.Matches(pattern, @"[UDLR]|\d+").Select(m => m.Value).ToArray();
-      var direction = p[0];
       var amount = int.Parse(p[1], NumberStyles.Integer, CultureInfo.InvariantCulture);
 
       for (var i = 0; i < amount; i++)
@@ -75,7 +74,8 @@ namespace CoreGameEngine.Draw.Builder
           _ => throw new InvalidOperationException()
         };
 
-        Glyphs.Add(new Glyph(tile, newPos, _color));
+        Glyphs.Add(newPos, new Glyph(tile, _color));
+
         _pos = newPos;
       }
     }

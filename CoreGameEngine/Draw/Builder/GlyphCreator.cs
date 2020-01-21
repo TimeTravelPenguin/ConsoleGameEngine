@@ -12,12 +12,12 @@ namespace CoreGameEngine.Draw.Builder
       _shapeBuilder = shapeBuilder;
     }
 
-    public void CreateGlyph(IEnumerable<string> pattern, char tile, Point pos)
+    public void CreateGlyph(IEnumerable<string> pattern, char tile)
     {
-      _shapeBuilder.ConstructGlyph(pattern, tile, pos);
+      _shapeBuilder.ConstructGlyph(pattern, tile);
     }
 
-    public IList<Glyph> GetGlyph()
+    public IDictionary<Point, Glyph> GetGlyph()
     {
       return _shapeBuilder.Glyphs;
     }
