@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using CoreGameEngine.Resources;
 
@@ -33,6 +35,30 @@ namespace CoreGameEngine.Extensions
       }
 
       return result;
+    }
+
+    public static T[][] ToJaggadArray<T>(this IList<IList<T>> glyphs)
+    {
+      if (glyphs is null)
+      {
+        throw new ArgumentNullException(nameof(glyphs), Exceptions.Argument_IsNull);
+      }
+
+      var rows = new T[glyphs.Count][];
+      for (var i = 0; i < glyphs.Count; i++)
+      {
+        rows[i] = Enumerable.Range(0, glyphs.Count)
+          .Select(x => glyphs[x])
+          .Cast<T>()
+          .ToArray();
+      }
+
+      return rows;
+    }
+
+    public static T[][] RotateMatrix<T>(this IList<IList<T>> glyphs, Rotation rotation)
+    {
+      return glyphs.ToJaggadArray().RotateMatrix(rotation);
     }
 
     public static T[,] RotateMatrix<T>(this T[,] matrix, Rotation rotation)
@@ -80,6 +106,23 @@ namespace CoreGameEngine.Extensions
       }
 
       return newArr;
+    }
+
+    public static IDictionary<Point, T> RotateMatrix<T>(this IDictionary<Point, T> matrix, Rotation rotation)
+    {
+      if (matrix is null)
+      {
+        throw new ArgumentNullException(nameof(matrix), Exceptions.Argument_IsNull);
+      }
+
+      var minX = matrix.Keys.Select(x => x.X).Min();
+      var maxX = matrix.Keys.Select(x => x.X).Max();
+      var minY = matrix.Keys.Select(y => y.Y).Min();
+      var maxY = matrix.Keys.Select(y => y.Y).Max();
+
+      var matrixArr = new int[maxY - minY + 1, maxX - minX + 1];
+
+      return new Dictionary<Point, T>();
     }
 
     public static T[][] RotateMatrix<T>(this T[][] jaggadArray, Rotation rotation)
