@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Drawing;
+using CoreGameEngine.Draw;
 using CoreGameEngine.Extensions;
+using CoreGameEngine.Structs;
 
 namespace TetrisDemo
 {
@@ -13,27 +16,14 @@ namespace TetrisDemo
       //                        "n 0 3 c blue r2 c white r1 c blue r12" +
       //                        "n 0 4 r9 c white r1 c blue r5",
       //  'X',
-      //  Point.Empty);
+      //  Point3D.Empty);
 
-      //myShape.Draw();
 
       //Console.ReadKey(true);
 
-      //while (true)
-      //{
-      //  Console.Clear();
-      //  myShape.
-      //}
+      ////myShape.Rotate(Rotation.Clockwise);
 
-      int[][] arr =
-      {
-        new[] {1, 4},
-        new[] {1, 2}
-      };
-
-      var g = arr.RotateMatrix(Rotation.Clockwise);
-
-      Console.ReadKey(true);
+      //Console.ReadKey(true);
     }
   }
 }
