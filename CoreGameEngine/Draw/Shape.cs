@@ -4,21 +4,30 @@ using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
 using CoreGameEngine.Draw.Builder;
+using CoreGameEngine.Extensions;
 using CoreGameEngine.Resources;
+using CoreGameEngine.Structs;
 
 namespace CoreGameEngine.Draw
 {
-  public class Shape
+  public class Shape : IShape
   {
     private static readonly Regex Validator = new Regex(RegexPatterns.ValidShape, RegexOptions.IgnoreCase);
-    private readonly IList<Glyph> _glyphs;
+    public IDictionary<Point, Glyph> Glyphs { get; }
+    public Point3D Position { get; set; }
 
-    public Shape(IList<Glyph> glyphs)
+    public void Rotate(Rotation rotation)
     {
-      _glyphs = glyphs;
+      Glyphs.RotateMatrix(rotation);
     }
 
-    public static Shape New(string shape, char tile, Point glyphOrigin)
+    public Shape(IDictionary<Point, Glyph> glyphs, Point3D position)
+    {
+      Glyphs = glyphs;
+      Position = position;
+    }
+
+    public static Shape New(string shape, char tile, Point3D pos)
     {
       string[] matches;
       if (Validator.IsMatch(shape))
@@ -33,27 +42,9 @@ namespace CoreGameEngine.Draw
       }
 
       var creator = new GlyphCreator(new GlyphBuilder());
-      creator.CreateGlyph(matches, tile, glyphOrigin);
+      creator.CreateGlyph(matches, tile);
 
-      return new Shape(creator.GetGlyph());
-    }
-
-    public void Draw(bool drawFromCursor = false)
-    {
-      foreach (var glyph in _glyphs)
-      {
-        if (drawFromCursor)
-        {
-          Console.SetCursorPosition(Console.CursorLeft + glyph.Pos.X, Console.CursorTop + glyph.Pos.Y);
-        }
-        else
-        {
-          Console.SetCursorPosition(glyph.Pos.X, glyph.Pos.Y);
-        }
-
-        Console.ForegroundColor = glyph.Color;
-        Console.Write(glyph.Character);
-      }
+      return new Shape(creator.GetGlyph(), pos);
     }
   }
 }
