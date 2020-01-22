@@ -16,7 +16,6 @@
 
 using System.Collections.Generic;
 using System.Drawing;
-using CoreGameEngine.Extensions;
 using CoreGameEngine.Structs;
 
 namespace CoreGameEngine.Draw
@@ -25,6 +24,7 @@ namespace CoreGameEngine.Draw
   {
     IDictionary<Point, Glyph> Glyphs { get; }
     Point3D Position { get; set; }
-    void Rotate(Rotation rotation);
+    bool Updated { get; set; }
+    void SetGlyphs(IDictionary<Point, Glyph> glyphs);
   }
 }

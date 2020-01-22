@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
 using CoreGameEngine.Draw.Builder;
-using CoreGameEngine.Extensions;
 using CoreGameEngine.Resources;
 using CoreGameEngine.Structs;
 
@@ -13,18 +12,33 @@ namespace CoreGameEngine.Draw
   public class Shape : IShape
   {
     private static readonly Regex Validator = new Regex(RegexPatterns.ValidShape, RegexOptions.IgnoreCase);
-    public IDictionary<Point, Glyph> Glyphs { get; }
-    public Point3D Position { get; set; }
+    private Point3D _position;
 
-    public void Rotate(Rotation rotation)
+    public IDictionary<Point, Glyph> Glyphs { get; private set; }
+
+    public Point3D Position
     {
-      Glyphs.RotateMatrix(rotation);
+      get => _position;
+      set
+      {
+        _position = value;
+        Updated = true;
+      }
+    }
+
+    public bool Updated { get; set; }
+
+    public void SetGlyphs(IDictionary<Point, Glyph> glyphs)
+    {
+      Glyphs = glyphs;
+      Updated = true;
     }
 
     public Shape(IDictionary<Point, Glyph> glyphs, Point3D position)
     {
       Glyphs = glyphs;
       Position = position;
+      Updated = true;
     }
 
     public static Shape New(string shape, char tile, Point3D pos)

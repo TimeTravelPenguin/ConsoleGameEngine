@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using CoreGameEngine.Draw;
-using CoreGameEngine.Shape_Manager;
 using CoreGameEngine.Structs;
 using FluentAssertions;
 using Xunit;
@@ -21,19 +20,12 @@ namespace CoreGameEngine.xUnit.Tests.Shape_Manager_Tests
 
         manager.Add(shape);
 
-        manager.VirtualLocations
+        manager.ShapeLocations
           .Should()
           .ContainKey(point)
           .WhichValue
           .Should()
           .Be(shape);
-
-        manager.VirtualReverse
-          .Should()
-          .ContainKey(shape)
-          .WhichValue
-          .Should()
-          .Be(point);
       }
     }
   }

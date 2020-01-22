@@ -61,18 +61,5 @@ namespace CoreGameEngine.Extensions
 
       return matrixArr;
     }
-
-
-    public static IDictionary<Point, T> PointArrayToDictionary<T>([NotNull] this (Point, T)[][] matrix)
-    {
-      if (matrix is null)
-      {
-        throw new ArgumentNullException(nameof(matrix), Exceptions.Argument_IsNull);
-      }
-
-      var dictionary = new Dictionary<Point, T>();
-
-      return dictionary; //todo!!!
-    }
   }
 }
