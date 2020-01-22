@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using CoreGameEngine.Draw;
 using CoreGameEngine.EngineOperator;
+using CoreGameEngine.Extensions;
 using CoreGameEngine.KeyboardController;
 
 namespace CoreGameEngine
 {
-  public class CoreEngine : IDisposable
+  public class EngineCore : IDisposable
   {
     private readonly IController _controller;
     private Action _onFinish;
     private Action _onStart;
     private Func<bool> _onUpdate;
+
+    public ShapeManager ShapeManager { get; }
 
     public void Dispose()
     {
@@ -18,13 +22,15 @@ namespace CoreGameEngine
       GC.SuppressFinalize(this);
     }
 
-    public CoreEngine()
-    {
-    }
-
-    public CoreEngine([NotNull] IController controller)
+    private EngineCore(IController controller)
     {
       _controller = controller;
+      ShapeManager = ShapeManager.NewManager();
+    }
+
+    public static EngineCore NewEngine([NotNull] IController controller)
+    {
+      return new EngineCore(controller);
     }
 
     protected virtual void Dispose(bool disposing)
