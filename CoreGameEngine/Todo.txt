@@ -1,0 +1,7 @@
+﻿Todo
+
+ShapeManager can have objects rotate or move that overlap with other shapes.
+Write logic to draw the upper most shape. Or, draw from lowest zIndex to highest.
+Write logic to detect when a shape's region has been overwritten and process the above when clear again.
+
+rewrite the body of the game engine to be cleaner. It sucks.
