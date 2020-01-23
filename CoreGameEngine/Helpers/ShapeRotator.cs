@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using CoreGameEngine.Resources;
-using CoreGameEngine.Shape;
+using CoreGameEngine.Shapes;
 
 #endregion
 

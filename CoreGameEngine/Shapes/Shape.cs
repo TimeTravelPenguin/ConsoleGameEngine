@@ -4,10 +4,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
 using CoreGameEngine.Resources;
-using CoreGameEngine.Shape.Builder;
+using CoreGameEngine.Shapes.Builder;
 using CoreGameEngine.Structs;
 
-namespace CoreGameEngine.Shape
+namespace CoreGameEngine.Shapes
 {
   public class Shape : IShape
   {

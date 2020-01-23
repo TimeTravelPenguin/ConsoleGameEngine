@@ -18,7 +18,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using CoreGameEngine.Structs;
 
-namespace CoreGameEngine.Shape
+namespace CoreGameEngine.Shapes
 {
   public interface IShape
   {

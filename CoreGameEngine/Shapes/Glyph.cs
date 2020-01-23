@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CoreGameEngine.Shape
+namespace CoreGameEngine.Shapes
 {
   public class Glyph
   {

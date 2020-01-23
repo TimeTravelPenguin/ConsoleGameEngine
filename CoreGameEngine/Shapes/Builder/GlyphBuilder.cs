@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using CoreGameEngine.Extensions;
 
-namespace CoreGameEngine.Shape.Builder
+namespace CoreGameEngine.Shapes.Builder
 {
   internal class GlyphBuilder : IGlyphBuilder
   {

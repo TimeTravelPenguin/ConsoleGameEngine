@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 
-namespace CoreGameEngine.Shape.Builder
+namespace CoreGameEngine.Shapes.Builder
 {
   internal interface IGlyphBuilder
   {

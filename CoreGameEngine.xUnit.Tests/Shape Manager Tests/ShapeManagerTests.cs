@@ -1,5 +1,5 @@
 ﻿using System.Drawing;
-using CoreGameEngine.Draw;
+using CoreGameEngine.Shapes;
 using CoreGameEngine.Structs;
 using FluentAssertions;
 using Xunit;
