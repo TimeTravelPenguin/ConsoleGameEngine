@@ -5,18 +5,24 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using CoreGameEngine.Extensions;
+using CoreGameEngine.Resources;
 
 namespace CoreGameEngine.Shapes.Builder
 {
-  internal class GlyphBuilder : IGlyphBuilder
+  public class ShapeBuilder : IShapeBuilder
   {
     private ConsoleColor _color;
     private Point _pos;
 
-    public IDictionary<Point, Glyph> Glyphs { get; set; } = new Dictionary<Point, Glyph>();
+    public IDictionary<Point, Glyph> Glyphs { get; } = new Dictionary<Point, Glyph>();
 
     public void ConstructGlyph(IEnumerable<string> pattern, char tile)
     {
+      if (pattern is null)
+      {
+        throw new ArgumentNullException(nameof(pattern), Exceptions.ArgumentIsNull);
+      }
+
       _color = ConsoleColor.White;
       _pos = Point.Empty;
 

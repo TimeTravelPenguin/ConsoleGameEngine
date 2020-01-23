@@ -16,10 +16,10 @@ namespace CoreGameEngine.Shapes
       [NotNull] IDictionary<IShape, Point3D> referenceLookup)
     {
       ShapeLocations = shapeLocations ??
-                       throw new ArgumentNullException(nameof(shapeLocations), Exceptions.Argument_IsNull);
+                       throw new ArgumentNullException(nameof(shapeLocations), Exceptions.ArgumentIsNull);
 
       ReferenceLookup = referenceLookup ??
-                        throw new ArgumentNullException(nameof(referenceLookup), Exceptions.Argument_IsNull);
+                        throw new ArgumentNullException(nameof(referenceLookup), Exceptions.ArgumentIsNull);
     }
 
     public static ShapeManager NewManager()
@@ -27,11 +27,16 @@ namespace CoreGameEngine.Shapes
       return new ShapeManager(new Dictionary<Point3D, IShape>(), new Dictionary<IShape, Point3D>());
     }
 
+    public void CreateNewShape(string shape, char tile, Point3D pos)
+    {
+      Add(Shape.New(shape, tile, pos));
+    }
+
     public void Add([NotNull] IShape shape)
     {
       if (shape is null)
       {
-        throw new ArgumentNullException(nameof(shape), Exceptions.Argument_IsNull);
+        throw new ArgumentNullException(nameof(shape), Exceptions.ArgumentIsNull);
       }
 
       if (ShapeLocations.ContainsKey(shape.Position))
@@ -63,7 +68,7 @@ namespace CoreGameEngine.Shapes
     {
       if (newShape is null)
       {
-        throw new ArgumentNullException(nameof(newShape), Exceptions.Argument_IsNull);
+        throw new ArgumentNullException(nameof(newShape), Exceptions.ArgumentIsNull);
       }
 
       if (!ReferenceLookup.ContainsKey(newShape))
@@ -99,7 +104,7 @@ namespace CoreGameEngine.Shapes
     {
       if (shape is null)
       {
-        throw new ArgumentNullException(nameof(shape), Exceptions.Argument_IsNull);
+        throw new ArgumentNullException(nameof(shape), Exceptions.ArgumentIsNull);
       }
 
       foreach (var (point, _) in shape.Glyphs)
@@ -115,7 +120,7 @@ namespace CoreGameEngine.Shapes
     {
       if (shape is null)
       {
-        throw new ArgumentNullException(nameof(shape), Exceptions.Argument_IsNull);
+        throw new ArgumentNullException(nameof(shape), Exceptions.ArgumentIsNull);
       }
 
       foreach (var (point, glyph) in shape.Glyphs)

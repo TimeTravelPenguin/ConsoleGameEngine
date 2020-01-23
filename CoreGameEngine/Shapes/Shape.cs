@@ -55,8 +55,8 @@ namespace CoreGameEngine.Shapes
         throw new ArgumentException(Exceptions.Shape_InvalidShapeRegex, nameof(shape));
       }
 
-      var creator = new GlyphCreator(new GlyphBuilder());
-      creator.CreateGlyph(matches, tile);
+      var creator = new ShapeBuilder();
+      creator.ProcessGlyphPattern(matches, tile);
 
       return new Shape(creator.GetGlyph(), pos);
     }
