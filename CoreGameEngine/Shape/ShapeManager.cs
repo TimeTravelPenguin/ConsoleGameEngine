@@ -5,7 +5,7 @@ using CoreGameEngine.Extensions;
 using CoreGameEngine.Resources;
 using CoreGameEngine.Structs;
 
-namespace CoreGameEngine.Draw
+namespace CoreGameEngine.Shape
 {
   public class ShapeManager
   {

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
-using CoreGameEngine.Draw.Builder;
 using CoreGameEngine.Resources;
+using CoreGameEngine.Shape.Builder;
 using CoreGameEngine.Structs;
 
-namespace CoreGameEngine.Draw
+namespace CoreGameEngine.Shape
 {
   public class Shape : IShape
   {
