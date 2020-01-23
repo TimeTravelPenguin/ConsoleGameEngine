@@ -32,7 +32,7 @@ namespace TetrisDemo
         engine.ShapeManager.UpdateScreen();
 
         Console.ReadKey(true);
-        myShape.Rotate(Rotation.Clockwise);
+        myShape.Rotate(Rotation.CounterClockwise);
       }
     }
   }
