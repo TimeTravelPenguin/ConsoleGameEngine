@@ -19,18 +19,17 @@ namespace TetrisDemo
       //  'X',
       //  new Point3D(10, 5, 0));
 
+      var engine = EngineCore.NewEngine(null);
       var myShape = Shape.New("c red r4 n 4 0 d1", 'X', new Point3D(10, 5, 0));
 
-      var manager = ShapeManager.NewManager();
-      manager.Add(myShape);
+      engine.ShapeManager.Add(myShape);
 
-      var engine = EngineCore.NewEngine(null);
       //engine.SetOnStart(new OperatorBase);
 
       while (true)
       {
         Console.Clear();
-        manager.UpdateScreen();
+        engine.ShapeManager.UpdateScreen();
 
         Console.ReadKey(true);
         myShape.Rotate(Rotation.Clockwise);
