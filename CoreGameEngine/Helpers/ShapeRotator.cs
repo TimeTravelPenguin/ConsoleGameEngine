@@ -31,13 +31,17 @@ namespace CoreGameEngine.Helpers
 
         private static IDictionary<Point, T> Rotate<T>(this IDictionary<Point, T> sorted, Rotation rotation)
         {
-            // Clockwise rotation is
-            // last y -> first y,
-            // first x -> last x
+            /* Rotation Logic
 
-            // C-Clockwise rotation is
-            // first y -> last y,
-            // last x -> first x
+                  Clockwise rotation is
+                  last y -> first y,
+                  first x->last x
+
+                  C - Clockwise rotation is
+                  first y -> last y,
+                  last x->first x
+
+            */
 
             return rotation switch
             {
@@ -49,25 +53,68 @@ namespace CoreGameEngine.Helpers
 
         private static IDictionary<Point, T> RotateClockwise<T>(this IDictionary<Point, T> points)
         {
-            if (points is null)
-            {
-                throw new ArgumentNullException(nameof(points), Exceptions.Argument_IsNull);
-            }
-
-            var rotated = new Dictionary<Point, T>();
-            var maxY = points.Keys.Select(p => p.Y).Max();
-
-            foreach (var p in points.Keys)
-            {
-                var newPoint = new Point(maxY - p.Y, p.X);
-                var value = points[new Point(p.X, p.Y)];
-                rotated.Add(newPoint, value);
-            }
-
-            return rotated;
+            return Rotate(points, p => p.Y, (point, max) => (max - point.Y, point.X));
         }
 
         private static IDictionary<Point, T> RotateCounterClockwise<T>(this IDictionary<Point, T> points)
+        {
+            return Rotate(points, p => p.X, (point, max) => (point.Y, max - point.X));
+        }
+
+        /// <summary>
+        ///     Rotates an <see cref="IDictionary{TKey,TValue}" /> with <see cref="Point" /> key representing a matrix.
+        /// </summary>
+        /// <typeparam name="T">
+        ///     The value type of the dictionary being rotated.
+        /// </typeparam>
+        /// <param name="points">
+        ///     The <see cref="IDictionary{TKey,TValue}" /> to rotate.
+        /// </param>
+        /// <param name="maxSelector">
+        ///     The maximum <see cref="Point.X" /> or <see cref="Point.Y" /> value.
+        ///     If rotating clockwise, <see cref="Point.Y" /> is used; for counter-clockwise, <see cref="Point.X" />.
+        ///     <para>
+        ///         <example>
+        ///             This is an example of selecting the <see cref="Point.Y" /> parameter in the event of rotating clockwise,
+        ///             given a <see cref="Point" /> p:
+        ///             <code>p => p.Y</code>
+        ///         </example>
+        ///     </para>
+        /// </param>
+        /// <param name="coordinateMapper">
+        ///     This <see cref="Func{T1, T2, TResult}" /> takes a <see cref="Point" /> and <see cref="int" /> input representing
+        ///     the current point to be mapped to the new rotated coordinate, and <paramref name="maxSelector" />.
+        ///     The output is a the newly mapped coordinates.
+        ///     <example>
+        ///         The following is an example of rotating <paramref name="points" />
+        ///         Clockwise:
+        ///         <code>
+        /// foreach (var p in points.Keys)
+        /// {
+        ///    var (x, y) = (point, max) => (max - point.Y, point.X);
+        ///    var newPoint = new Point(x, y);
+        ///    var value = points[new Point(p.X, p.Y)];
+        ///    rotatedDictionary.Add(newPoint, value);
+        /// }
+        ///  </code>
+        ///         Counter-clockwise:
+        ///         <code>
+        /// foreach (var p in points.Keys)
+        /// {
+        ///    var (x, y) = (point, max) => (point.Y, max - point.X);
+        ///    var newPoint = new Point(x, y);
+        ///    var value = points[new Point(p.X, p.Y)];
+        ///    rotatedDictionary.Add(newPoint, value);
+        /// }
+        ///  </code>
+        ///     </example>
+        /// </param>
+        /// <returns>
+        ///     Returns a new <see cref="IDictionary{TKey,TValue}" /> with the values mapped to new keys. The keys are the newly
+        ///     mapped rotated coordinate.
+        /// </returns>
+        private static IDictionary<Point, T> Rotate<T>(this IDictionary<Point, T> points, Func<Point, int> maxSelector,
+            Func<Point, int, (int newX, int newY)> coordinateMapper)
         {
             if (points is null)
             {
@@ -75,11 +122,12 @@ namespace CoreGameEngine.Helpers
             }
 
             var rotated = new Dictionary<Point, T>();
-            var maxX = points.Keys.Select(p => p.X).Max();
+            var max = points.Keys.Select(maxSelector).Max();
 
             foreach (var p in points.Keys)
             {
-                var newPoint = new Point(p.Y, maxX - p.X);
+                var (x, y) = coordinateMapper.Invoke(p, max);
+                var newPoint = new Point(x, y);
                 var value = points[new Point(p.X, p.Y)];
                 rotated.Add(newPoint, value);
             }
