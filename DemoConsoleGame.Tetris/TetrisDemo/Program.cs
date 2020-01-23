@@ -1,5 +1,6 @@
 ﻿using System;
 using CoreGameEngine;
+using CoreGameEngine.EngineActions;
 using CoreGameEngine.EngineOperator;
 using CoreGameEngine.Helpers;
 using CoreGameEngine.Shapes;
@@ -33,6 +34,14 @@ namespace TetrisDemo
 
         Console.ReadKey(true);
         myShape.Rotate(Rotation.CounterClockwise);
+      }
+    }
+
+    public class MyAction : EngineAction
+    {
+      public void A()
+      {
+        CanExecute = true;
       }
     }
   }
