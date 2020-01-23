@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using CoreGameEngine.EngineOperator;
-using CoreGameEngine.Extensions;
+using CoreGameEngine.EngineActions;
 using CoreGameEngine.KeyboardController;
 using CoreGameEngine.Shapes;
 
@@ -41,37 +40,29 @@ namespace CoreGameEngine
       }
     }
 
-    public void SetOnStart<T>(IOperator<T> operation, object param = null)
+    public void SetOnStart(IEngineAction action)
     {
       _onStart = () =>
       {
-        if (operation.CanExecute())
+        if (action.CanExecute)
         {
-          operation.Execute(param);
+          action.Execute();
         }
       };
     }
 
-    public void SetOnUpdate<T>(IOperator<T> operation, object param = null)
+    public void SetOnUpdate(IEngineAction<bool> action)
     {
-      _onUpdate = () =>
-      {
-        if (operation.CanExecute())
-        {
-          operation.Execute(param);
-        }
-
-        return operation.CanExecute();
-      };
+      _onUpdate = () => action.CanExecute && action.Execute();
     }
 
-    public void SetOnFinish<T>(IOperator<T> operation, object param = null)
+    public void SetOnFinish(IEngineAction action)
     {
       _onFinish = () =>
       {
-        if (operation.CanExecute())
+        if (action.CanExecute)
         {
-          operation.Execute(param);
+          action.Execute();
         }
       };
     }
@@ -82,11 +73,11 @@ namespace CoreGameEngine
 
       _onStart.Invoke();
 
-      bool loop;
+      bool update;
       do
       {
-        loop = _onUpdate.Invoke();
-      } while (loop);
+        update = _onUpdate.Invoke();
+      } while (update);
 
       _onFinish.Invoke();
 
