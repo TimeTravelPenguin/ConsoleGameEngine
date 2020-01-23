@@ -138,7 +138,7 @@
   <data name="Shape_InvalidShapeRegex" xml:space="preserve">
     <value>The provided shape expression is not a valid pattern</value>
   </data>
-  <data name="Argument_IsNull" xml:space="preserve">
+  <data name="ArgumentIsNull" xml:space="preserve">
     <value>The given argument is null</value>
   </data>
   <data name="Argument_StringEmpty_ExceptionTakesParam" xml:space="preserve">
@@ -161,5 +161,8 @@
   </data>
   <data name="Collection_CannotBeEmpty" xml:space="preserve">
     <value>Collection cannot be empty</value>
+  </data>
+  <data name="ParameterIsNull" xml:space="preserve">
+    <value>{0} is null</value>
   </data>
 </root>

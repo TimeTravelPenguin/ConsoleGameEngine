@@ -12,7 +12,7 @@ namespace CoreGameEngine.Extensions
     {
       if (values is null)
       {
-        throw new ArgumentNullException(nameof(values), Exceptions.Argument_IsNull);
+        throw new ArgumentNullException(nameof(values), Exceptions.ArgumentIsNull);
       }
 
       return values.Any(value => input.StartsWith(value, StringComparison.InvariantCulture));

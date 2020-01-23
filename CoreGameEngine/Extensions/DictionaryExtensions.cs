@@ -14,7 +14,7 @@ namespace CoreGameEngine.Extensions
     {
       if (dictionary is null)
       {
-        throw new ArgumentNullException(nameof(dictionary), Exceptions.Argument_IsNull);
+        throw new ArgumentNullException(nameof(dictionary), Exceptions.ArgumentIsNull);
       }
 
       if (dictionary.TryGetValue(fromKey, out var value))
@@ -33,7 +33,7 @@ namespace CoreGameEngine.Extensions
     {
       if (dictionary is null)
       {
-        throw new ArgumentNullException(nameof(dictionary), Exceptions.Argument_IsNull);
+        throw new ArgumentNullException(nameof(dictionary), Exceptions.ArgumentIsNull);
       }
 
       if (dictionary.Values.Contains(null))

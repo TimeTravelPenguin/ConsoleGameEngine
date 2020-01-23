@@ -23,7 +23,7 @@ namespace CoreGameEngine.Helpers
         {
             if (shape is null)
             {
-                throw new ArgumentNullException(nameof(shape), Exceptions.Argument_IsNull);
+                throw new ArgumentNullException(nameof(shape), Exceptions.ArgumentIsNull);
             }
 
             shape.SetGlyphs(shape.Glyphs.Rotate(rotationDirection));
@@ -118,7 +118,7 @@ namespace CoreGameEngine.Helpers
         {
             if (points is null)
             {
-                throw new ArgumentNullException(nameof(points), Exceptions.Argument_IsNull);
+                throw new ArgumentNullException(nameof(points), Exceptions.ArgumentIsNull);
             }
 
             var rotated = new Dictionary<Point, T>();
