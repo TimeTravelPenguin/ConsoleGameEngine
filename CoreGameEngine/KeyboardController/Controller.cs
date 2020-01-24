@@ -27,7 +27,7 @@ namespace CoreGameEngine.KeyboardController
 
         if (_controllerFactory.ContainsKey(key))
         {
-          _controllerFactory.Create(key);
+          _controllerFactory.Create(key).Invoke();
         }
       });
     }

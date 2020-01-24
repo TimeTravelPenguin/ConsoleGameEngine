@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace CoreGameEngine.Structs
 {
@@ -26,6 +27,11 @@ namespace CoreGameEngine.Structs
     public static Point3D Add(Point3D left, Point3D right)
     {
       return new Point3D(unchecked(left.X + right.X), unchecked(left.Y + right.Y), unchecked(left.Z + right.Z));
+    }
+
+    public Point3D Add(Point point)
+    {
+      return this + new Point3D(point.X, point.Y, 0);
     }
 
     public void Subtract(Point3D point)

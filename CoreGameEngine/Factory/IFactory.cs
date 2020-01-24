@@ -18,7 +18,7 @@ using System;
 
 namespace CoreGameEngine.Factory
 {
-  public interface IFactory<TKey, TValue>
+  public interface IFactory<in TKey, TValue>
   {
     void Register(TKey key, Func<TValue> value);
     TValue Create(TKey key);

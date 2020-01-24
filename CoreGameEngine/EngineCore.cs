@@ -23,6 +23,7 @@ namespace CoreGameEngine
 
     private EngineCore(IController controller)
     {
+      Console.CursorVisible = false;
       _controller = controller;
       ShapeManager = ShapeManager.NewManager();
     }
@@ -71,15 +72,18 @@ namespace CoreGameEngine
     {
       _controller?.RunController();
 
-      _onStart.Invoke();
+      _onStart?.Invoke();
 
-      bool update;
-      do
+      if (!(_onUpdate is null))
       {
-        update = _onUpdate.Invoke();
-      } while (update);
+        bool update;
+        do
+        {
+          update = _onUpdate.Invoke();
+        } while (update);
+      }
 
-      _onFinish.Invoke();
+      _onFinish?.Invoke();
 
       _controller?.StopController();
     }

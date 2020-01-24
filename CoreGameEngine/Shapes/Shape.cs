@@ -30,8 +30,12 @@ namespace CoreGameEngine.Shapes
 
     public void SetGlyphs(IDictionary<Point, Glyph> glyphs)
     {
-      Glyphs = glyphs;
+      Glyphs = new Dictionary<Point, Glyph>(glyphs);
       Updated = true;
+    }
+
+    public Shape()
+    {
     }
 
     public Shape(IDictionary<Point, Glyph> glyphs, Point3D position)
@@ -41,7 +45,17 @@ namespace CoreGameEngine.Shapes
       Updated = true;
     }
 
-    public static Shape New(string shape, char tile, Point3D pos)
+    public static IShape New(IShape shape)
+    {
+      if (shape is null)
+      {
+        throw new ArgumentNullException(nameof(shape), Exceptions.ArgumentIsNull);
+      }
+
+      return new Shape(new Dictionary<Point, Glyph>(shape.Glyphs), shape.Position);
+    }
+
+    public static IShape New(string shape, char tile, Point3D pos)
     {
       string[] matches;
       if (Validator.IsMatch(shape))
