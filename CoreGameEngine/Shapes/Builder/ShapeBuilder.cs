@@ -16,6 +16,11 @@ namespace CoreGameEngine.Shapes.Builder
 
     public IDictionary<Point, Glyph> Glyphs { get; } = new Dictionary<Point, Glyph>();
 
+    public IDictionary<Point, Glyph> GetGlyph()
+    {
+      return Glyphs;
+    }
+
     public void ConstructGlyph(IEnumerable<string> pattern, char tile)
     {
       if (pattern is null)
@@ -41,11 +46,6 @@ namespace CoreGameEngine.Shapes.Builder
           SetColour(p);
         }
       }
-    }
-
-    public IDictionary<Point, Glyph> GetGlyph()
-    {
-      return Glyphs;
     }
 
     private void SetColour(string colour)

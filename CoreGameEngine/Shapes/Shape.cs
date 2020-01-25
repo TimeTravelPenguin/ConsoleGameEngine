@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
+using CoreGameEngine.Extensions;
 using CoreGameEngine.Resources;
 using CoreGameEngine.Shapes.Builder;
 using CoreGameEngine.Structs;
@@ -52,7 +53,7 @@ namespace CoreGameEngine.Shapes
         throw new ArgumentNullException(nameof(shape), Exceptions.ArgumentIsNull);
       }
 
-      return new Shape(new Dictionary<Point, Glyph>(shape.Glyphs), shape.Position);
+      return shape.CreateNewShapeFrom(shape.GetType());
     }
 
     public static IShape New(string shape, char tile, Point3D pos)

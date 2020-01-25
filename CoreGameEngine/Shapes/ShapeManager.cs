@@ -138,7 +138,7 @@ namespace CoreGameEngine.Shapes
 
     private static void Write(char character, Point3D position, ConsoleColor color = ConsoleColor.White)
     {
-      Console.SetCursorPosition(position.X, position.Y);
+      Console.SetCursorPosition(2 * position.X, position.Y);
       Console.ForegroundColor = color;
       Console.Write(character);
 
